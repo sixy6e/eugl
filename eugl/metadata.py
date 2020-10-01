@@ -1,31 +1,27 @@
+from importlib.metadata import distribution
 import yaml
 import rasterio
-import fmask
 from idl_functions import histogram
 
-from eugl.version import __version__, REPO_URL
-
-FMASK_REPO_URL = "https://bitbucket.org/chchrsc/python-fmask"
 
 # TODO: Fix update to merge the dictionaries
 
 
 def _get_eugl_metadata():
+    dist = distribution("eugl")
     return {
         "software_versions": {
-            "eugl": {
-                "version": __version__,
-                "repo_url": REPO_URL,
-            }
+            "eugl": {"version": dist.version, "repo_url": dist.metadata.get("Home-page")}
         }
     }
 
 
 def _get_fmask_metadata():
+    fmask_dist = distribution("python-fmask")
     base_info = _get_eugl_metadata()
     base_info["software_versions"]["fmask"] = {
-        "version": fmask.__version__,
-        "repo_url": FMASK_REPO_URL,
+        "version": fmask_dist.version,
+        "repo_url": fmask_dist.metadata.get("Home-page"),
     }
 
     return base_info
