@@ -20,7 +20,6 @@ exclude = '''
     | build
     | dist
   )/
-  | versioneer.py
 )
 '''
 
