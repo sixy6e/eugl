@@ -2,13 +2,11 @@
 
 from setuptools import setup, find_packages
 
-import versioneer
-
 setup(
     name="eugl",
     description="Modules that deal with sensor and data quality characterisation.",
-    version=versioneer.get_version(),
-    cmdclass=versioneer.get_cmdclass(),
+    use_scm_version=True,
+    setup_requires=["setuptools_scm"],
     url="https://github.com/OpenDataCubePipelines/eugl",
     author="The wagl authors",
     author_email="earth.observation@ga.gov.au",
